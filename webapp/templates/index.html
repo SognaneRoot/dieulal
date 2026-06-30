@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1f2421" />
+  <title>Récupérateur — vidéos en un lien</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="counter">
+    <header class="counter__header">
+      <p class="eyebrow">GUICHET DE RÉCUPÉRATION</p>
+      <h1 class="logo">RÉCUP<span class="logo__accent">/</span>TÉLÉ</h1>
+      <p class="tagline">Collez un lien. Repartez avec le fichier.</p>
+    </header>
+
+    <section class="desk" aria-label="Formulaire de récupération">
+      <label class="field-label" for="url">Lien de la vidéo</label>
+      <div class="input-row">
+        <input
+          id="url"
+          type="url"
+          inputmode="url"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="https://www.tiktok.com/@…/video/…"
+        />
+        <button id="paste-btn" class="btn-paste" type="button" aria-label="Coller le lien">
+          Coller
+        </button>
+      </div>
+
+      <div class="mode-toggle" role="radiogroup" aria-label="Type de fichier">
+        <input type="radio" name="mode" id="mode-video" value="video" checked />
+        <label for="mode-video">Vidéo</label>
+        <input type="radio" name="mode" id="mode-audio" value="audio" />
+        <label for="mode-audio">Audio (mp3)</label>
+      </div>
+
+      <button id="fetch-btn" class="btn-fetch" type="button">
+        Récupérer
+      </button>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="stub" class="stub stub--hidden" aria-live="polite">
+      <div class="stub__notch stub__notch--left"></div>
+      <div class="stub__notch stub__notch--right"></div>
+      <p class="stub__label">PRÊT À EMPORTER</p>
+      <p id="stub-filename" class="stub__filename">—</p>
+      <a id="stub-link" class="stub__action" href="#" download>Télécharger sur le téléphone ↓</a>
+    </section>
+
+    <footer class="counter__footer">
+      <p>YouTube · Instagram · TikTok · Pinterest</p>
+      <p class="fineprint">
+        À usage personnel uniquement, sur du contenu dont vous avez le droit
+        de disposer. Respectez le droit d'auteur et les CGU des plateformes.
+      </p>
+    </footer>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

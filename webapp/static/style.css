@@ -1,0 +1,345 @@
+/* ---------------------------------------------------------------
+   Palette
+   Ink       #1f2421  fond, surfaces profondes
+   Bone      #f4efe3  texte principal sur fond sombre
+   Stub      #36513f  surfaces secondaires (cartes, champs)
+   Ticket    #c1452f  accent d'action (bouton, perforations)
+   Brass     #c9a227  accent de confirmation / succès
+   --------------------------------------------------------------- */
+
+:root {
+  --ink: #1f2421;
+  --ink-soft: #262c28;
+  --bone: #f4efe3;
+  --bone-dim: #cfc8b8;
+  --stub: #36513f;
+  --stub-light: #436450;
+  --ticket: #c1452f;
+  --ticket-dark: #9c3623;
+  --brass: #c9a227;
+  --radius: 4px;
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+body {
+  background-image: radial-gradient(circle at 50% 0%, var(--ink-soft) 0%, var(--ink) 60%);
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 48px;
+}
+
+.counter {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Header ---------- */
+
+.counter__header {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--brass);
+  margin: 0 0 10px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  margin: 0;
+  color: var(--bone);
+  text-transform: uppercase;
+}
+
+.logo__accent {
+  color: var(--ticket);
+}
+
+.tagline {
+  font-family: var(--font-body);
+  color: var(--bone-dim);
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+
+/* ---------- Desk / form ---------- */
+
+.desk {
+  background: var(--ink-soft);
+  border: 1px solid rgba(244, 239, 227, 0.08);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--bone-dim);
+  text-transform: uppercase;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+#url {
+  flex: 1;
+  min-width: 0;
+  background: var(--ink);
+  border: 1px solid var(--stub-light);
+  border-radius: var(--radius);
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 14px;
+}
+
+#url::placeholder {
+  color: rgba(244, 239, 227, 0.35);
+}
+
+#url:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+
+.btn-paste {
+  background: var(--stub);
+  color: var(--bone);
+  border: 1px solid var(--stub-light);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.btn-paste:hover {
+  background: var(--stub-light);
+}
+
+.btn-paste:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+
+/* ---------- Mode toggle ---------- */
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--ink);
+  border: 1px solid var(--stub-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.mode-toggle input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mode-toggle label {
+  text-align: center;
+  padding: 11px 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--bone-dim);
+  cursor: pointer;
+}
+
+.mode-toggle input[type="radio"]:checked + label {
+  background: var(--stub);
+  color: var(--bone);
+}
+
+.mode-toggle label:focus-visible {
+  outline: 2px solid var(--brass);
+}
+
+/* ---------- Fetch button ---------- */
+
+.btn-fetch {
+  background: var(--ticket);
+  color: var(--bone);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 15px 0;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.btn-fetch:hover {
+  background: var(--ticket-dark);
+}
+
+.btn-fetch:active {
+  transform: scale(0.98);
+}
+
+.btn-fetch:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.btn-fetch:disabled {
+  background: var(--stub);
+  cursor: progress;
+}
+
+.status {
+  min-height: 18px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--bone-dim);
+  margin: 0;
+}
+
+.status--error {
+  color: #e08a73;
+}
+
+.status--ok {
+  color: var(--brass);
+}
+
+/* ---------- Stub (ticket de retrait) ---------- */
+
+.stub {
+  position: relative;
+  background: var(--stub);
+  border: 1px dashed rgba(244, 239, 227, 0.4);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.stub--hidden {
+  display: none;
+}
+
+.stub__notch {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: var(--ink);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.stub__notch--left {
+  left: -10px;
+}
+
+.stub__notch--right {
+  right: -10px;
+}
+
+.stub__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--brass);
+  margin: 0 0 8px;
+}
+
+.stub__filename {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--bone);
+  margin: 0 0 16px;
+  word-break: break-word;
+}
+
+.stub__action {
+  display: inline-block;
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+}
+
+.stub__action:focus-visible {
+  outline: 2px solid var(--ticket);
+  outline-offset: 2px;
+}
+
+/* ---------- Footer ---------- */
+
+.counter__footer {
+  text-align: center;
+  color: var(--bone-dim);
+}
+
+.counter__footer p {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.fineprint {
+  font-family: var(--font-body) !important;
+  letter-spacing: normal !important;
+  font-size: 12px !important;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 32px;
+  }
+}
